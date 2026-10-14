@@ -21,7 +21,7 @@ use Illuminate\Support\Str;
 #[Hidden(['password'])]
 class Mikrotik extends Model
 {
-
+    /** @return Attribute<never, string> */
     protected function nama(): Attribute
     {
         return Attribute::make(
@@ -40,6 +40,7 @@ class Mikrotik extends Model
         ];
     }
 
+    /** @return BelongsTo<User, $this> */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

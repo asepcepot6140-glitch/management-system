@@ -8,8 +8,11 @@ use SNMP;
 class ZteService
 {
     private const OID_ONU_NAME = '1.3.6.1.4.1.3902.1082.500.10.2.3.3.1.2';
+
     private const OID_ONU_SERIAL = '1.3.6.1.4.1.3902.1082.500.10.2.3.3.1.18';
+
     private const OID_ONU_PHASE_STATUS = '1.3.6.1.4.1.3902.1082.500.10.2.3.8.1.4';
+
     private const OID_ONU_RX_POWER = '1.3.6.1.4.1.3902.1082.500.20.2.2.2.1.10';
 
     private const PHASE_STATUS = [
@@ -26,6 +29,22 @@ class ZteService
 
     public function __construct(private readonly Olt $olt) {}
 
+    /**
+     * @return list<array{
+     *     index: string,
+     *     if_index: int,
+     *     olt_port: string,
+     *     onu_id: int,
+     *     interface: string,
+     *     name: string|null,
+     *     serial_number: string|null,
+     *     status: string,
+     *     status_code: int|null,
+     *     rx_power: float|null,
+     *     rx_power_status: 'na'|'danger'|'warning'|'good',
+     *     rx_power_raw: float|null
+     * }>
+     */
     public function onuList(?int $ifIndex = null): array
     {
         $serials = $this->walk(self::OID_ONU_SERIAL);
@@ -50,7 +69,7 @@ class ZteService
                 : null;
 
             $rxRaw = $this->get(
-                self::OID_ONU_RX_POWER . '.' . $index . '.1'
+                self::OID_ONU_RX_POWER.'.'.$index.'.1'
             );
 
             $rx = $this->rxPower($rxRaw);
@@ -75,12 +94,15 @@ class ZteService
 
         usort(
             $onus,
-            fn(array $a, array $b) => [$a['if_index'], $a['onu_id']] <=> [$b['if_index'], $b['onu_id']],
+            fn (array $a, array $b) => [$a['if_index'], $a['onu_id']] <=> [$b['if_index'], $b['onu_id']],
         );
 
         return $onus;
     }
 
+    /**
+     * @return array{value: float|null, status: 'na'|'danger'|'warning'|'good'}
+     */
     private function rxPower(mixed $value): array
     {
         if (! is_numeric($value) || (int) $value === 65535) {
@@ -120,6 +142,7 @@ class ZteService
         }
     }
 
+    /** @return array<string, mixed> */
     private function walk(string $oid): array
     {
         $session = $this->session();
@@ -142,7 +165,7 @@ class ZteService
             }
 
             $normalized = [];
-            $prefix = ltrim($oid, '.') . '.';
+            $prefix = ltrim($oid, '.').'.';
 
             foreach ($result as $key => $value) {
                 $key = ltrim((string) $key, '.');
@@ -174,7 +197,7 @@ class ZteService
             return $this->session;
         }
 
-        if (!extension_loaded('snmp')) {
+        if (! extension_loaded('snmp')) {
             throw new OnuServiceException(
                 'The PHP SNMP extension is not enabled. Enable the extension and restart PHP.',
             );
@@ -182,7 +205,7 @@ class ZteService
 
         $community = $this->olt->snmp_ro;
 
-        if (blank($community)) {
+        if (! is_string($community) || $community === '') {
             throw new OnuServiceException(
                 'The SNMP RO community is not configured for this OLT.',
             );
@@ -190,7 +213,7 @@ class ZteService
 
         $session = new SNMP(
             SNMP::VERSION_2C,
-            $this->olt->host . ':' . ($this->olt->port ?? 161),
+            $this->olt->host.':'.($this->olt->port ?? 161),
             $community,
             3_000_000,
             1,
@@ -204,11 +227,12 @@ class ZteService
         return $this->session = $session;
     }
 
+    /** @return array{0: int|null, 1: int} */
     private function splitKey(string $key): array
     {
         $parts = explode('.', $key);
 
-        if (count($parts) !== 2 || !ctype_digit($parts[0]) || !ctype_digit($parts[1])) {
+        if (count($parts) !== 2 || ! ctype_digit($parts[0]) || ! ctype_digit($parts[1])) {
             return [null, 0];
         }
 

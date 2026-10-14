@@ -7,9 +7,9 @@ use App\Http\Requests\StoreMikrotikRequest;
 use App\Http\Requests\UpdateMikrotikRequest;
 use App\Models\Mikrotik;
 use App\Models\User;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
 use Inertia\Response;
 

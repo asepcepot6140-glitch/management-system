@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\Tr069\Tr069Controller;
 use App\Http\Controllers\Mikrotik\MikrotikController;
 use App\Http\Controllers\Olt\OltController;
 use App\Http\Controllers\Olt\OnuController;
+use App\Http\Controllers\Tr069\Tr069Controller;
 use Illuminate\Support\Facades\Route;
 
 Route::inertia('/', 'welcome')->name('home');
@@ -22,4 +22,4 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('onus', [OnuController::class, 'index'])->name('onus.index');
 });
 
-require __DIR__ . '/settings.php';
+require __DIR__.'/settings.php';

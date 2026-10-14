@@ -26,6 +26,7 @@ use Illuminate\Support\Str;
 #[Hidden(['password', 'snmp_ro', 'snmp_rw'])]
 class Olt extends Model
 {
+    /** @return Attribute<never, string> */
     protected function nama(): Attribute
     {
         return Attribute::make(
@@ -46,6 +47,7 @@ class Olt extends Model
         ];
     }
 
+    /** @return BelongsTo<User, $this> */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

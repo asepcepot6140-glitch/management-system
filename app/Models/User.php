@@ -31,20 +31,24 @@ class User extends Authenticatable
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
+    /** @return HasMany<Mikrotik, $this> */
     public function mikrotiks(): HasMany
     {
         return $this->hasMany(Mikrotik::class);
     }
 
+    /** @return HasMany<Tr069, $this> */
     public function tr069s(): HasMany
     {
         return $this->hasMany(Tr069::class);
     }
-    
+
+    /** @return HasMany<Olt, $this> */
     public function olts(): HasMany
     {
         return $this->hasMany(Olt::class);
     }
+
     /**
      * Get the attributes that should be cast.
      *

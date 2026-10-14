@@ -17,6 +17,7 @@ use Illuminate\Support\Str;
 ])]
 class Tr069 extends Model
 {
+    /** @return Attribute<never, string> */
     protected function nama(): Attribute
     {
         return Attribute::make(
@@ -39,6 +40,7 @@ class Tr069 extends Model
         return 'slug';
     }
 
+    /** @return BelongsTo<User, $this> */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

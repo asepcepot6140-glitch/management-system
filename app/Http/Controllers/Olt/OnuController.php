@@ -31,6 +31,7 @@ class OnuController extends Controller
             ->orderBy('nama')
             ->get(['id', 'nama', 'slug', 'host', 'vendor', 'model', 'protocol']);
 
+        /** @var list<array<string, mixed>> $onus */
         $onus = [];
         $error = null;
         $selectedSlug = null;
@@ -62,6 +63,12 @@ class OnuController extends Controller
         ]);
     }
 
+    /**
+     * @return array{
+     *     0: list<array<string, mixed>>,
+     *     1: array{key: string, values?: array<string, mixed>}|null
+     * }
+     */
     private function loadOnus(Olt $olt, bool $refresh): array
     {
         $service = $this->service($olt);
