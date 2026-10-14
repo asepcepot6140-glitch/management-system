@@ -1,0 +1,46 @@
+<?php
+
+return [
+    'accepted' => ':attribute harus disetujui.',
+    'between' => [
+        'numeric' => ':attribute harus berada di antara :min dan :max.',
+        'string' => ':attribute harus memiliki :min sampai :max karakter.',
+    ],
+    'confirmed' => 'Konfirmasi :attribute tidak cocok.',
+    'current_password' => 'Kata sandi saat ini salah.',
+    'email' => ':attribute harus berupa alamat email yang valid.',
+    'enum' => 'Pilihan :attribute tidak valid.',
+    'in' => 'Pilihan :attribute tidak valid.',
+    'integer' => ':attribute harus berupa bilangan bulat.',
+    'ip' => ':attribute harus berupa alamat IP yang valid.',
+    'max' => [
+        'numeric' => ':attribute tidak boleh lebih dari :max.',
+        'string' => ':attribute tidak boleh lebih dari :max karakter.',
+    ],
+    'min' => [
+        'numeric' => ':attribute minimal harus :min.',
+        'string' => ':attribute minimal harus :min karakter.',
+    ],
+    'password' => 'Kata sandi salah.',
+    'required' => ':attribute wajib diisi.',
+    'required_if' => ':attribute wajib diisi jika :other bernilai :value.',
+    'string' => ':attribute harus berupa teks.',
+    'unique' => ':attribute sudah digunakan.',
+    'attributes' => [
+        'current_password' => 'kata sandi saat ini',
+        'email' => 'alamat email',
+        'nama' => 'nama',
+        'password' => 'kata sandi',
+        'password_confirmation' => 'konfirmasi kata sandi',
+        'port' => 'port',
+        'slug' => 'slug',
+        'snmp_ro' => 'SNMP Read Only (RO)',
+        'snmp_rw' => 'SNMP Read Write (RW)',
+        'username' => 'nama pengguna',
+        'vendor' => 'vendor',
+        'model' => 'model',
+        'protocol' => 'protokol',
+        'host' => 'host',
+        'ip' => 'alamat IP',
+    ],
+];
