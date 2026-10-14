@@ -1,62 +1,62 @@
-import { Head, router } from "@inertiajs/react";
-import IconButton from "@mui/material/IconButton";
-import Paper from "@mui/material/Paper";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Tooltip from "@mui/material/Tooltip";
-import { Pencil, Plus, Trash2 } from "lucide-react";
-import { useState } from "react";
-import { MikrotikForm, type MikrotikRecord } from "@/pages/mikrotiks/form";
-import { Button } from "@/components/ui/button";
-import { DeleteConfirmationDialog } from "@/components/delete-confirmation-dialog";
-import { useTranslation } from "@/lib/i18n";
+import { Head, router } from '@inertiajs/react';
+import IconButton from '@mui/material/IconButton';
+import Paper from '@mui/material/Paper';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Tooltip from '@mui/material/Tooltip';
+import { Pencil, Plus, Trash2 } from 'lucide-react';
+import { useState } from 'react';
+import { MikrotikForm, type MikrotikRecord } from '@/pages/mikrotiks/form';
+import { Button } from '@/components/ui/button';
+import { DeleteConfirmationDialog } from '@/components/delete-confirmation-dialog';
+import { useTranslation } from '@/lib/i18n';
 import {
     Dialog,
     DialogContent,
     DialogHeader,
     DialogTitle,
-} from "@/components/ui/dialog";
-import MikrotikController from "@/actions/App/Http/Controllers/Mikrotik/MikrotikController";
-import mikrotiks from "@/routes/mikrotiks";
+} from '@/components/ui/dialog';
+import MikrotikController from '@/actions/App/Http/Controllers/Mikrotik/MikrotikController';
+import mikrotiks from '@/routes/mikrotiks';
 
 type Props = {
     mikrotiks: MikrotikRecord[];
 };
 const paperSx = {
     borderRadius: 2,
-    bgcolor: "var(--card)",
-    color: "var(--card-foreground)",
-    borderColor: "var(--border)",
-    "& .MuiTableCell-root": {
-        color: "inherit",
-        borderColor: "var(--border)",
-        whiteSpace: "nowrap",
+    bgcolor: 'var(--card)',
+    color: 'var(--card-foreground)',
+    borderColor: 'var(--border)',
+    '& .MuiTableCell-root': {
+        color: 'inherit',
+        borderColor: 'var(--border)',
+        whiteSpace: 'nowrap',
     },
-    "& .MuiTableHead-root .MuiTableCell-root": {
-        backgroundColor: "var(--muted)",
-        color: "var(--muted-foreground)",
-        fontSize: "0.75rem",
+    '& .MuiTableHead-root .MuiTableCell-root': {
+        backgroundColor: 'var(--muted)',
+        color: 'var(--muted-foreground)',
+        fontSize: '0.75rem',
         fontWeight: 700,
-        letterSpacing: "0.05em",
-        textTransform: "uppercase",
+        letterSpacing: '0.05em',
+        textTransform: 'uppercase',
     },
-    "& .MuiTableBody-root .MuiTableCell-root": {
-        fontSize: "0.875rem",
+    '& .MuiTableBody-root .MuiTableCell-root': {
+        fontSize: '0.875rem',
         fontWeight: 400,
     },
-    "& .MuiTableBody-root .MuiTableRow-root:last-child .MuiTableCell-root": {
+    '& .MuiTableBody-root .MuiTableRow-root:last-child .MuiTableCell-root': {
         borderBottom: 0,
     },
-    "& .MuiTableBody-root .MuiTableRow-root:hover": {
-        bgcolor: "var(--accent)",
+    '& .MuiTableBody-root .MuiTableRow-root:hover': {
+        bgcolor: 'var(--accent)',
     },
 };
 const addButtonClass =
-    "border-primary bg-transparent text-primary hover:bg-primary/10 hover:text-primary dark:border-primary dark:bg-transparent dark:hover:bg-primary/15";
+    'border-primary bg-transparent text-primary hover:bg-primary/10 hover:text-primary dark:border-primary dark:bg-transparent dark:hover:bg-primary/15';
 
 export default function MikrotikIndex({ mikrotiks: records }: Props) {
     const { t } = useTranslation();
@@ -72,11 +72,11 @@ export default function MikrotikIndex({ mikrotiks: records }: Props) {
 
     return (
         <>
-            <Head title={t("Mikrotik")} />
+            <Head title={t('Mikrotik')} />
             <div className="space-y-3 p-3">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                     <h1 className="text-xl font-semibold tracking-tight">
-                        {t("Mikrotik")}
+                        {t('Mikrotik')}
                     </h1>
                     <Button
                         variant="outline"
@@ -85,7 +85,7 @@ export default function MikrotikIndex({ mikrotiks: records }: Props) {
                         onClick={() => setIsCreateOpen(true)}
                     >
                         <Plus />
-                        {t("Add MikroTik")}
+                        {t('Add MikroTik')}
                     </Button>
                 </div>
 
@@ -94,18 +94,18 @@ export default function MikrotikIndex({ mikrotiks: records }: Props) {
                     variant="outlined"
                     sx={paperSx}
                 >
-                    <Table size="small" aria-label={t("Mikrotik list")}>
+                    <Table size="small" aria-label={t('Mikrotik list')}>
                         <TableHead>
                             <TableRow>
                                 <TableCell sx={{ width: 56 }}>
-                                    {t("No.")}
+                                    {t('No.')}
                                 </TableCell>
-                                <TableCell>{t("Name")}</TableCell>
+                                <TableCell>{t('Name')}</TableCell>
                                 <TableCell>IP</TableCell>
-                                <TableCell>{t("Port")}</TableCell>
-                                <TableCell>{t("Username")}</TableCell>
+                                <TableCell>{t('Port')}</TableCell>
+                                <TableCell>{t('Username')}</TableCell>
                                 <TableCell align="right">
-                                    {t("Actions")}
+                                    {t('Actions')}
                                 </TableCell>
                             </TableRow>
                         </TableHead>
@@ -115,9 +115,9 @@ export default function MikrotikIndex({ mikrotiks: records }: Props) {
                                     <TableCell
                                         colSpan={6}
                                         align="center"
-                                        sx={{ py: 1, color: "text.secondary" }}
+                                        sx={{ py: 1, color: 'text.secondary' }}
                                     >
-                                        {t("No data found")}
+                                        {t('No data found')}
                                     </TableCell>
                                 </TableRow>
                             ) : (
@@ -131,11 +131,11 @@ export default function MikrotikIndex({ mikrotiks: records }: Props) {
                                             {mikrotik.username}
                                         </TableCell>
                                         <TableCell align="right">
-                                            <Tooltip title={t("Edit")}>
+                                            <Tooltip title={t('Edit')}>
                                                 <IconButton
                                                     size="small"
                                                     color="primary"
-                                                    aria-label={`${t("Edit")} ${mikrotik.nama}`}
+                                                    aria-label={`${t('Edit')} ${mikrotik.nama}`}
                                                     onClick={() =>
                                                         setEditing(mikrotik)
                                                     }
@@ -143,11 +143,11 @@ export default function MikrotikIndex({ mikrotiks: records }: Props) {
                                                     <Pencil className="size-4" />
                                                 </IconButton>
                                             </Tooltip>
-                                            <Tooltip title={t("Delete")}>
+                                            <Tooltip title={t('Delete')}>
                                                 <IconButton
                                                     size="small"
                                                     color="error"
-                                                    aria-label={`${t("Delete")} ${mikrotik.nama}`}
+                                                    aria-label={`${t('Delete')} ${mikrotik.nama}`}
                                                     onClick={() =>
                                                         setDeleting(mikrotik)
                                                     }
@@ -175,7 +175,7 @@ export default function MikrotikIndex({ mikrotiks: records }: Props) {
                 <DialogContent className="max-h-[90vh] overflow-y-auto rounded-xl">
                     <DialogHeader className="border-b pb-4">
                         <DialogTitle>
-                            {editing ? t("Edit MikroTik") : t("Add MikroTik")}
+                            {editing ? t('Edit MikroTik') : t('Add MikroTik')}
                         </DialogTitle>
                     </DialogHeader>
                     {editing ? (
@@ -196,7 +196,7 @@ export default function MikrotikIndex({ mikrotiks: records }: Props) {
             </Dialog>
             <DeleteConfirmationDialog
                 open={deleting !== null}
-                itemName={deleting?.nama ?? ""}
+                itemName={deleting?.nama ?? ''}
                 onOpenChange={(open) => {
                     if (!open) {
                         setDeleting(null);
@@ -215,5 +215,5 @@ export default function MikrotikIndex({ mikrotiks: records }: Props) {
 }
 
 MikrotikIndex.layout = {
-    breadcrumbs: [{ title: "Mikrotik", href: mikrotiks.index() }],
+    breadcrumbs: [{ title: 'Mikrotik', href: mikrotiks.index() }],
 };

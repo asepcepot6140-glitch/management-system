@@ -1,12 +1,12 @@
-import { Link } from "@inertiajs/react";
-import { ChevronDown, Circle, LayoutGrid, Network, Server } from "lucide-react";
-import type { ComponentProps } from "react";
-import AppLogo from "@/components/app-logo";
+import { Link } from '@inertiajs/react';
+import { ChevronDown, Circle, LayoutGrid, Network, Server } from 'lucide-react';
+import type { ComponentProps } from 'react';
+import AppLogo from '@/components/app-logo';
 import {
     Collapsible,
     CollapsibleContent,
     CollapsibleTrigger,
-} from "@/components/ui/collapsible";
+} from '@/components/ui/collapsible';
 import {
     Sidebar,
     SidebarContent,
@@ -20,18 +20,18 @@ import {
     SidebarMenuSubButton,
     SidebarMenuSubItem,
     useSidebar,
-} from "@/components/ui/sidebar";
-import { useCurrentUrl } from "@/hooks/use-current-url";
-import { dashboard } from "@/routes";
-import mikrotiks from "@/routes/mikrotiks";
-import olts from "@/routes/olts";
-import onus from "@/routes/onus";
-import tr069s from "@/routes/tr069s";
-import { useTranslation } from "@/lib/i18n";
+} from '@/components/ui/sidebar';
+import { useCurrentUrl } from '@/hooks/use-current-url';
+import { dashboard } from '@/routes';
+import mikrotiks from '@/routes/mikrotiks';
+import olts from '@/routes/olts';
+import onus from '@/routes/onus';
+import tr069s from '@/routes/tr069s';
+import { useTranslation } from '@/lib/i18n';
 
 type SubItem = {
     title: string;
-    href: ComponentProps<typeof Link>["href"];
+    href: ComponentProps<typeof Link>['href'];
     isActive: boolean;
 };
 
@@ -49,8 +49,8 @@ function CollapseMenu({ title, icon: Icon, items }: CollapseMenuProps) {
     const isActive = items.some((item) => item.isActive);
 
     const parentColor = isActive
-        ? "font-medium text-sidebar-primary data-[state=open]:text-sidebar-primary"
-        : "text-sidebar-foreground data-[state=open]:text-sidebar-foreground";
+        ? 'font-medium text-sidebar-primary data-[state=open]:text-sidebar-primary'
+        : 'text-sidebar-foreground data-[state=open]:text-sidebar-foreground';
 
     const closeMobileSidebar = () => {
         if (isMobile) {
@@ -129,13 +129,13 @@ export function AppSidebar() {
 
             <SidebarContent>
                 <SidebarGroup className="px-2 py-0">
-                    <SidebarGroupLabel>{t("Platform")}</SidebarGroupLabel>
+                    <SidebarGroupLabel>{t('Platform')}</SidebarGroupLabel>
                     <SidebarMenu>
                         <SidebarMenuItem>
                             <SidebarMenuButton
                                 asChild
                                 isActive={isCurrentUrl(dashboard())}
-                                tooltip={{ children: t("Dashboard") }}
+                                tooltip={{ children: t('Dashboard') }}
                             >
                                 <Link
                                     href={dashboard()}
@@ -143,7 +143,7 @@ export function AppSidebar() {
                                     onClick={closeMobileSidebar}
                                 >
                                     <LayoutGrid />
-                                    <span>{t("Dashboard")}</span>
+                                    <span>{t('Dashboard')}</span>
                                 </Link>
                             </SidebarMenuButton>
                         </SidebarMenuItem>
@@ -153,7 +153,7 @@ export function AppSidebar() {
                             icon={Network}
                             items={[
                                 {
-                                    title: "Index",
+                                    title: 'Index',
                                     href: mikrotiks.index(),
                                     isActive: isCurrentUrl(mikrotiks.index()),
                                 },
@@ -165,7 +165,7 @@ export function AppSidebar() {
                             icon={Server}
                             items={[
                                 {
-                                    title: "Index",
+                                    title: 'Index',
                                     href: tr069s.index(),
                                     isActive: isCurrentUrl(tr069s.index()),
                                 },
@@ -177,12 +177,12 @@ export function AppSidebar() {
                             icon={Server}
                             items={[
                                 {
-                                    title: "Index",
+                                    title: 'Index',
                                     href: olts.index(),
                                     isActive: isCurrentUrl(olts.index()),
                                 },
                                 {
-                                    title: "ONU",
+                                    title: 'ONU',
                                     href: onus.index(),
                                     isActive: isCurrentUrl(onus.index()),
                                 },

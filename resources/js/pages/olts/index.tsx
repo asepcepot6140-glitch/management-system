@@ -1,27 +1,27 @@
-import { Head, router } from "@inertiajs/react";
-import IconButton from "@mui/material/IconButton";
-import Paper from "@mui/material/Paper";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Tooltip from "@mui/material/Tooltip";
-import { Pencil, Plus, Trash2 } from "lucide-react";
-import { useState } from "react";
-import { OltForm, type OltOptions, type OltRecord } from "@/pages/olts/form";
-import { Button } from "@/components/ui/button";
-import { DeleteConfirmationDialog } from "@/components/delete-confirmation-dialog";
-import { useTranslation } from "@/lib/i18n";
+import { Head, router } from '@inertiajs/react';
+import IconButton from '@mui/material/IconButton';
+import Paper from '@mui/material/Paper';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Tooltip from '@mui/material/Tooltip';
+import { Pencil, Plus, Trash2 } from 'lucide-react';
+import { useState } from 'react';
+import { OltForm, type OltOptions, type OltRecord } from '@/pages/olts/form';
+import { Button } from '@/components/ui/button';
+import { DeleteConfirmationDialog } from '@/components/delete-confirmation-dialog';
+import { useTranslation } from '@/lib/i18n';
 import {
     Dialog,
     DialogContent,
     DialogHeader,
     DialogTitle,
-} from "@/components/ui/dialog";
-import OltController from "@/actions/App/Http/Controllers/Olt/OltController";
-import olts from "@/routes/olts";
+} from '@/components/ui/dialog';
+import OltController from '@/actions/App/Http/Controllers/Olt/OltController';
+import olts from '@/routes/olts';
 
 type Props = {
     olts: OltRecord[];
@@ -30,36 +30,36 @@ type Props = {
 
 const paperSx = {
     borderRadius: 2,
-    bgcolor: "var(--card)",
-    color: "var(--card-foreground)",
-    borderColor: "var(--border)",
-    "& .MuiTableCell-root": {
-        color: "inherit",
-        borderColor: "var(--border)",
-        whiteSpace: "nowrap",
+    bgcolor: 'var(--card)',
+    color: 'var(--card-foreground)',
+    borderColor: 'var(--border)',
+    '& .MuiTableCell-root': {
+        color: 'inherit',
+        borderColor: 'var(--border)',
+        whiteSpace: 'nowrap',
     },
-    "& .MuiTableHead-root .MuiTableCell-root": {
-        backgroundColor: "var(--muted)",
-        color: "var(--muted-foreground)",
-        fontSize: "0.75rem",
+    '& .MuiTableHead-root .MuiTableCell-root': {
+        backgroundColor: 'var(--muted)',
+        color: 'var(--muted-foreground)',
+        fontSize: '0.75rem',
         fontWeight: 700,
-        letterSpacing: "0.05em",
-        textTransform: "uppercase",
+        letterSpacing: '0.05em',
+        textTransform: 'uppercase',
     },
-    "& .MuiTableBody-root .MuiTableCell-root": {
-        fontSize: "0.875rem",
+    '& .MuiTableBody-root .MuiTableCell-root': {
+        fontSize: '0.875rem',
         fontWeight: 400,
     },
-    "& .MuiTableBody-root .MuiTableRow-root:last-child .MuiTableCell-root": {
+    '& .MuiTableBody-root .MuiTableRow-root:last-child .MuiTableCell-root': {
         borderBottom: 0,
     },
-    "& .MuiTableBody-root .MuiTableRow-root:hover": {
-        bgcolor: "var(--accent)",
+    '& .MuiTableBody-root .MuiTableRow-root:hover': {
+        bgcolor: 'var(--accent)',
     },
 };
 
 const addButtonClass =
-    "border-primary bg-transparent text-primary hover:bg-primary/10 hover:text-primary dark:border-primary dark:bg-transparent dark:hover:bg-primary/15";
+    'border-primary bg-transparent text-primary hover:bg-primary/10 hover:text-primary dark:border-primary dark:bg-transparent dark:hover:bg-primary/15';
 
 export default function OltIndex({ olts: records, options }: Props) {
     const { t } = useTranslation();
@@ -75,12 +75,12 @@ export default function OltIndex({ olts: records, options }: Props) {
 
     return (
         <>
-            <Head title={t("OLT")} />
+            <Head title={t('OLT')} />
 
             <div className="space-y-3 p-3">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                     <h1 className="text-xl font-semibold tracking-tight">
-                        {t("OLT")}
+                        {t('OLT')}
                     </h1>
 
                     <Button
@@ -90,7 +90,7 @@ export default function OltIndex({ olts: records, options }: Props) {
                         onClick={() => setIsCreateOpen(true)}
                     >
                         <Plus />
-                        {t("Add OLT")}
+                        {t('Add OLT')}
                     </Button>
                 </div>
 
@@ -99,21 +99,21 @@ export default function OltIndex({ olts: records, options }: Props) {
                     variant="outlined"
                     sx={paperSx}
                 >
-                    <Table size="small" aria-label={t("OLT list")}>
+                    <Table size="small" aria-label={t('OLT list')}>
                         <TableHead>
                             <TableRow>
                                 <TableCell sx={{ width: 56 }}>
-                                    {t("No.")}
+                                    {t('No.')}
                                 </TableCell>
-                                <TableCell>{t("Name")}</TableCell>
-                                <TableCell>{t("Host")}</TableCell>
-                                <TableCell>{t("Model")}</TableCell>
-                                <TableCell>{t("Vendor")}</TableCell>
-                                <TableCell>{t("Protocol")}</TableCell>
-                                <TableCell>{t("Port")}</TableCell>
-                                <TableCell>{t("Username")}</TableCell>
+                                <TableCell>{t('Name')}</TableCell>
+                                <TableCell>{t('Host')}</TableCell>
+                                <TableCell>{t('Model')}</TableCell>
+                                <TableCell>{t('Vendor')}</TableCell>
+                                <TableCell>{t('Protocol')}</TableCell>
+                                <TableCell>{t('Port')}</TableCell>
+                                <TableCell>{t('Username')}</TableCell>
                                 <TableCell align="right">
-                                    {t("Actions")}
+                                    {t('Actions')}
                                 </TableCell>
                             </TableRow>
                         </TableHead>
@@ -124,9 +124,9 @@ export default function OltIndex({ olts: records, options }: Props) {
                                     <TableCell
                                         colSpan={9}
                                         align="center"
-                                        sx={{ py: 1, color: "text.secondary" }}
+                                        sx={{ py: 1, color: 'text.secondary' }}
                                     >
-                                        {t("No data found")}
+                                        {t('No data found')}
                                     </TableCell>
                                 </TableRow>
                             ) : (
@@ -138,16 +138,16 @@ export default function OltIndex({ olts: records, options }: Props) {
                                         <TableCell>{olt.model}</TableCell>
                                         <TableCell>{olt.vendor}</TableCell>
                                         <TableCell>{olt.protocol}</TableCell>
-                                        <TableCell>{olt.port ?? "-"}</TableCell>
+                                        <TableCell>{olt.port ?? '-'}</TableCell>
                                         <TableCell>
-                                            {olt.username ?? "-"}
+                                            {olt.username ?? '-'}
                                         </TableCell>
                                         <TableCell align="right">
-                                            <Tooltip title={t("Edit")}>
+                                            <Tooltip title={t('Edit')}>
                                                 <IconButton
                                                     size="small"
                                                     color="primary"
-                                                    aria-label={`${t("Edit")} ${olt.nama}`}
+                                                    aria-label={`${t('Edit')} ${olt.nama}`}
                                                     onClick={() =>
                                                         setEditing(olt)
                                                     }
@@ -156,11 +156,11 @@ export default function OltIndex({ olts: records, options }: Props) {
                                                 </IconButton>
                                             </Tooltip>
 
-                                            <Tooltip title={t("Delete")}>
+                                            <Tooltip title={t('Delete')}>
                                                 <IconButton
                                                     size="small"
                                                     color="error"
-                                                    aria-label={`${t("Delete")} ${olt.nama}`}
+                                                    aria-label={`${t('Delete')} ${olt.nama}`}
                                                     onClick={() =>
                                                         setDeleting(olt)
                                                     }
@@ -186,7 +186,7 @@ export default function OltIndex({ olts: records, options }: Props) {
                 <DialogContent className="max-h-[90vh] overflow-y-auto rounded-xl">
                     <DialogHeader className="border-b pb-4">
                         <DialogTitle>
-                            {editing ? t("Edit OLT") : t("Add OLT")}
+                            {editing ? t('Edit OLT') : t('Add OLT')}
                         </DialogTitle>
                     </DialogHeader>
 
@@ -210,7 +210,7 @@ export default function OltIndex({ olts: records, options }: Props) {
             </Dialog>
             <DeleteConfirmationDialog
                 open={deleting !== null}
-                itemName={deleting?.nama ?? ""}
+                itemName={deleting?.nama ?? ''}
                 onOpenChange={(open) => {
                     if (!open) {
                         setDeleting(null);
@@ -227,5 +227,5 @@ export default function OltIndex({ olts: records, options }: Props) {
 }
 
 OltIndex.layout = {
-    breadcrumbs: [{ title: "OLT", href: olts.index() }],
+    breadcrumbs: [{ title: 'OLT', href: olts.index() }],
 };

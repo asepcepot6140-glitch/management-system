@@ -1,18 +1,18 @@
-import { Form } from "@inertiajs/react";
-import { useState } from "react";
-import InputError from "@/components/input-error";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Form } from '@inertiajs/react';
+import { useState } from 'react';
+import InputError from '@/components/input-error';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import {
     Select,
     SelectContent,
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from "@/components/ui/select";
-import type { RouteFormDefinition } from "@/wayfinder";
-import { useTranslation } from "@/lib/i18n";
+} from '@/components/ui/select';
+import type { RouteFormDefinition } from '@/wayfinder';
+import { useTranslation } from '@/lib/i18n';
 
 export type OltRecord = {
     id: number;
@@ -37,31 +37,31 @@ export type OltOptions = {
 };
 
 type Props = {
-    form: RouteFormDefinition<"post">;
+    form: RouteFormDefinition<'post'>;
     options: OltOptions;
     olt?: OltRecord;
     onSuccess: () => void;
 };
 
-const triggerClass = "h-10 w-full rounded-lg";
-const contentClass = "rounded-lg";
+const triggerClass = 'h-10 w-full rounded-lg';
+const contentClass = 'rounded-lg';
 
 export function OltForm({ form, options, olt, onSuccess }: Props) {
     const { t } = useTranslation();
     const modelsFor = (vendor: string) =>
         options.vendors.find((item) => item.value === vendor)?.models ?? [];
 
-    const initialVendor = olt?.vendor ?? options.vendors[0]?.value ?? "";
+    const initialVendor = olt?.vendor ?? options.vendors[0]?.value ?? '';
     const initialModel =
         olt?.model ??
         modelsFor(initialVendor)[0] ??
         options.models[0]?.value ??
-        "";
+        '';
 
     const [vendor, setVendor] = useState(initialVendor);
     const [model, setModel] = useState(initialModel);
     const [protocol, setProtocol] = useState(
-        olt?.protocol ?? options.protocols[0]?.value ?? "snmp",
+        olt?.protocol ?? options.protocols[0]?.value ?? 'snmp',
     );
 
     const allowedModels = options.models.filter((item) =>
@@ -75,7 +75,7 @@ export function OltForm({ form, options, olt, onSuccess }: Props) {
         const allowed = modelsFor(next);
 
         if (!allowed.includes(model)) {
-            setModel(allowed[0] ?? "");
+            setModel(allowed[0] ?? '');
         }
     };
 
@@ -90,7 +90,7 @@ export function OltForm({ form, options, olt, onSuccess }: Props) {
             {({ processing, errors }) => (
                 <>
                     <div className="grid gap-2">
-                        <Label htmlFor="nama">{t("Name")}</Label>
+                        <Label htmlFor="nama">{t('Name')}</Label>
                         <Input
                             id="nama"
                             name="nama"
@@ -98,7 +98,7 @@ export function OltForm({ form, options, olt, onSuccess }: Props) {
                             required
                             maxLength={255}
                             autoComplete="off"
-                            placeholder={t("OLT device name")}
+                            placeholder={t('OLT device name')}
                             className="rounded-lg"
                         />
                         <InputError message={errors.nama} />
@@ -106,7 +106,7 @@ export function OltForm({ form, options, olt, onSuccess }: Props) {
                     </div>
 
                     <div className="grid gap-2">
-                        <Label htmlFor="host">{t("Host / IP address")}</Label>
+                        <Label htmlFor="host">{t('Host / IP address')}</Label>
                         <Input
                             id="host"
                             name="host"
@@ -121,7 +121,7 @@ export function OltForm({ form, options, olt, onSuccess }: Props) {
                     </div>
 
                     <div className="grid gap-2">
-                        <Label htmlFor="vendor">{t("Vendor")}</Label>
+                        <Label htmlFor="vendor">{t('Vendor')}</Label>
                         <Select
                             name="vendor"
                             value={vendor}
@@ -130,7 +130,7 @@ export function OltForm({ form, options, olt, onSuccess }: Props) {
                         >
                             <SelectTrigger id="vendor" className={triggerClass}>
                                 <SelectValue
-                                    placeholder={t("Select a vendor")}
+                                    placeholder={t('Select a vendor')}
                                 />
                             </SelectTrigger>
                             <SelectContent className={contentClass}>
@@ -148,7 +148,7 @@ export function OltForm({ form, options, olt, onSuccess }: Props) {
                     </div>
 
                     <div className="grid gap-2">
-                        <Label htmlFor="model">{t("PON model")}</Label>
+                        <Label htmlFor="model">{t('PON model')}</Label>
                         <Select
                             name="model"
                             value={model}
@@ -157,7 +157,7 @@ export function OltForm({ form, options, olt, onSuccess }: Props) {
                         >
                             <SelectTrigger id="model" className={triggerClass}>
                                 <SelectValue
-                                    placeholder={t("Select a PON model")}
+                                    placeholder={t('Select a PON model')}
                                 />
                             </SelectTrigger>
                             <SelectContent className={contentClass}>
@@ -175,7 +175,7 @@ export function OltForm({ form, options, olt, onSuccess }: Props) {
                     </div>
 
                     <div className="grid gap-2">
-                        <Label htmlFor="protocol">{t("Protocol")}</Label>
+                        <Label htmlFor="protocol">{t('Protocol')}</Label>
                         <Select
                             name="protocol"
                             value={protocol}
@@ -187,7 +187,7 @@ export function OltForm({ form, options, olt, onSuccess }: Props) {
                                 className={triggerClass}
                             >
                                 <SelectValue
-                                    placeholder={t("Select a protocol")}
+                                    placeholder={t('Select a protocol')}
                                 />
                             </SelectTrigger>
                             <SelectContent className={contentClass}>
@@ -205,34 +205,34 @@ export function OltForm({ form, options, olt, onSuccess }: Props) {
                     </div>
 
                     <div className="grid gap-2">
-                        <Label htmlFor="port">{t("Port")}</Label>
+                        <Label htmlFor="port">{t('Port')}</Label>
                         <Input
                             id="port"
                             name="port"
                             type="number"
                             min={1}
                             max={65535}
-                            defaultValue={olt?.port ?? ""}
-                            placeholder={protocol === "snmp" ? "161" : "80"}
+                            defaultValue={olt?.port ?? ''}
+                            placeholder={protocol === 'snmp' ? '161' : '80'}
                             className="rounded-lg"
                         />
                         <InputError message={errors.port} />
                     </div>
 
-                    {protocol === "web" && (
+                    {protocol === 'web' && (
                         <>
                             <div className="grid gap-2">
                                 <Label htmlFor="username">
-                                    {t("Username")}
+                                    {t('Username')}
                                 </Label>
                                 <Input
                                     id="username"
                                     name="username"
-                                    defaultValue={olt?.username ?? ""}
+                                    defaultValue={olt?.username ?? ''}
                                     required
                                     maxLength={255}
                                     autoComplete="username"
-                                    placeholder={t("Device username")}
+                                    placeholder={t('Device username')}
                                     className="rounded-lg"
                                 />
                                 <InputError message={errors.username} />
@@ -240,8 +240,8 @@ export function OltForm({ form, options, olt, onSuccess }: Props) {
 
                             <div className="grid gap-2">
                                 <Label htmlFor="password">
-                                    {t("Password")}
-                                    {olt ? ` ${t("new (optional)")}` : ""}
+                                    {t('Password')}
+                                    {olt ? ` ${t('new (optional)')}` : ''}
                                 </Label>
                                 <Input
                                     id="password"
@@ -252,9 +252,9 @@ export function OltForm({ form, options, olt, onSuccess }: Props) {
                                     placeholder={
                                         olt
                                             ? t(
-                                                  "Leave blank to keep the current value",
+                                                  'Leave blank to keep the current value',
                                               )
-                                            : t("Device password")
+                                            : t('Device password')
                                     }
                                     className="rounded-lg"
                                 />
@@ -263,11 +263,11 @@ export function OltForm({ form, options, olt, onSuccess }: Props) {
                         </>
                     )}
 
-                    {protocol === "snmp" && (
+                    {protocol === 'snmp' && (
                         <>
                             <div className="grid gap-2">
                                 <Label htmlFor="snmp_ro">
-                                    {t("SNMP Read Only (RO)")}
+                                    {t('SNMP Read Only (RO)')}
                                 </Label>
                                 <Input
                                     id="snmp_ro"
@@ -277,9 +277,9 @@ export function OltForm({ form, options, olt, onSuccess }: Props) {
                                     placeholder={
                                         olt
                                             ? t(
-                                                  "Leave blank to keep the current value",
+                                                  'Leave blank to keep the current value',
                                               )
-                                            : t("SNMP RO community")
+                                            : t('SNMP RO community')
                                     }
                                     className="rounded-lg"
                                 />
@@ -288,7 +288,7 @@ export function OltForm({ form, options, olt, onSuccess }: Props) {
 
                             <div className="grid gap-2">
                                 <Label htmlFor="snmp_rw">
-                                    {t("SNMP Read Write (RW)")}
+                                    {t('SNMP Read Write (RW)')}
                                 </Label>
                                 <Input
                                     id="snmp_rw"
@@ -298,9 +298,9 @@ export function OltForm({ form, options, olt, onSuccess }: Props) {
                                     placeholder={
                                         olt
                                             ? t(
-                                                  "Leave blank to keep the current value",
+                                                  'Leave blank to keep the current value',
                                               )
-                                            : t("SNMP RW community")
+                                            : t('SNMP RW community')
                                     }
                                     className="rounded-lg"
                                 />
@@ -316,10 +316,10 @@ export function OltForm({ form, options, olt, onSuccess }: Props) {
                             className="rounded-lg"
                         >
                             {processing
-                                ? t("Saving...")
+                                ? t('Saving...')
                                 : olt
-                                  ? t("Update")
-                                  : t("Add OLT")}
+                                  ? t('Update')
+                                  : t('Add OLT')}
                         </Button>
                     </div>
                 </>

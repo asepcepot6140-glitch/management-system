@@ -1,10 +1,10 @@
-import { Form } from "@inertiajs/react";
-import InputError from "@/components/input-error";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import type { RouteFormDefinition } from "@/wayfinder";
-import { useTranslation } from "@/lib/i18n";
+import { Form } from '@inertiajs/react';
+import InputError from '@/components/input-error';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import type { RouteFormDefinition } from '@/wayfinder';
+import { useTranslation } from '@/lib/i18n';
 
 export type MikrotikRecord = {
     id: number;
@@ -17,7 +17,7 @@ export type MikrotikRecord = {
 };
 
 type Props = {
-    form: RouteFormDefinition<"post">;
+    form: RouteFormDefinition<'post'>;
     mikrotik?: MikrotikRecord;
     onSuccess: () => void;
 };
@@ -36,7 +36,7 @@ export function MikrotikForm({ form, mikrotik, onSuccess }: Props) {
             {({ processing, errors }) => (
                 <>
                     <div className="grid gap-2">
-                        <Label htmlFor="nama">{t("Name")}</Label>
+                        <Label htmlFor="nama">{t('Name')}</Label>
                         <Input
                             id="nama"
                             name="nama"
@@ -44,7 +44,7 @@ export function MikrotikForm({ form, mikrotik, onSuccess }: Props) {
                             required
                             maxLength={255}
                             autoComplete="off"
-                            placeholder={t("MikroTik device name")}
+                            placeholder={t('MikroTik device name')}
                             className="rounded-lg"
                         />
                         <InputError message={errors.nama} />
@@ -52,7 +52,7 @@ export function MikrotikForm({ form, mikrotik, onSuccess }: Props) {
                     </div>
 
                     <div className="grid gap-2">
-                        <Label htmlFor="ip">{t("IP address")}</Label>
+                        <Label htmlFor="ip">{t('IP address')}</Label>
                         <Input
                             id="ip"
                             name="ip"
@@ -67,7 +67,7 @@ export function MikrotikForm({ form, mikrotik, onSuccess }: Props) {
                     </div>
 
                     <div className="grid gap-2">
-                        <Label htmlFor="port">{t("API port")}</Label>
+                        <Label htmlFor="port">{t('API port')}</Label>
                         <Input
                             id="port"
                             name="port"
@@ -83,7 +83,7 @@ export function MikrotikForm({ form, mikrotik, onSuccess }: Props) {
                     </div>
 
                     <div className="grid gap-2">
-                        <Label htmlFor="username">{t("Username")}</Label>
+                        <Label htmlFor="username">{t('Username')}</Label>
                         <Input
                             id="username"
                             name="username"
@@ -91,7 +91,7 @@ export function MikrotikForm({ form, mikrotik, onSuccess }: Props) {
                             required
                             maxLength={255}
                             autoComplete="username"
-                            placeholder={t("MikroTik username")}
+                            placeholder={t('MikroTik username')}
                             className="rounded-lg"
                         />
                         <InputError message={errors.username} />
@@ -99,8 +99,8 @@ export function MikrotikForm({ form, mikrotik, onSuccess }: Props) {
 
                     <div className="grid gap-2">
                         <Label htmlFor="password">
-                            {t("Password")}
-                            {mikrotik ? ` ${t("new (optional)")}` : ""}
+                            {t('Password')}
+                            {mikrotik ? ` ${t('new (optional)')}` : ''}
                         </Label>
                         <Input
                             id="password"
@@ -110,8 +110,8 @@ export function MikrotikForm({ form, mikrotik, onSuccess }: Props) {
                             autoComplete="new-password"
                             placeholder={
                                 mikrotik
-                                    ? t("Leave blank to keep the current value")
-                                    : t("MikroTik password")
+                                    ? t('Leave blank to keep the current value')
+                                    : t('MikroTik password')
                             }
                             className="rounded-lg"
                         />
@@ -125,10 +125,10 @@ export function MikrotikForm({ form, mikrotik, onSuccess }: Props) {
                             className="rounded-lg"
                         >
                             {processing
-                                ? t("Saving...")
+                                ? t('Saving...')
                                 : mikrotik
-                                  ? t("Update")
-                                  : t("Add MikroTik")}
+                                  ? t('Update')
+                                  : t('Add MikroTik')}
                         </Button>
                     </div>
                 </>

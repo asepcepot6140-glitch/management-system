@@ -1,13 +1,13 @@
-import { useTranslation } from "@/lib/i18n";
-import { metaFor, sortStatuses } from "@/pages/onus/table";
-import type { ChipColor } from "@/pages/onus/table";
+import { useTranslation } from '@/lib/i18n';
+import { metaFor, sortStatuses } from '@/pages/onus/table';
+import type { ChipColor } from '@/pages/onus/table';
 
 const dotClass: Record<ChipColor, string> = {
-    success: "bg-emerald-500",
-    error: "bg-red-500",
-    warning: "bg-amber-500",
-    info: "bg-sky-500",
-    default: "bg-muted-foreground",
+    success: 'bg-emerald-500',
+    error: 'bg-red-500',
+    warning: 'bg-amber-500',
+    info: 'bg-sky-500',
+    default: 'bg-muted-foreground',
 };
 
 type Props = {
@@ -23,7 +23,7 @@ export function OnuSummaryCard({ total, statusCounts }: Props) {
     return (
         <div className="w-full rounded-xl border bg-card p-4 text-card-foreground sm:w-fit sm:min-w-56">
             <p className="text-base font-semibold">
-                {t("Total :count ONU", { count: total })}
+                {t('Total :count ONU', { count: total })}
             </p>
             <ul className="mt-2 space-y-1 text-sm">
                 {statuses.map((status) => {
